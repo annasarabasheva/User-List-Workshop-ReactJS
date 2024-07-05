@@ -20,7 +20,7 @@ function UserListTable() {
 
     return (
         <div className="table-wrapper">
-            <CreateUserModal/>
+            {showCreate && <CreateUserModal/>}
             <table className="table">
                 <thead>
                     <tr>
