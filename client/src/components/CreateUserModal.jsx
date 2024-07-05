@@ -1,6 +1,28 @@
+import React, { useState } from 'react';
+
 function CreateUserModal() {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
     return (
-        <div className="overlay" >
+        <div className="overlay">
             <div className="backdrop"></div>
             <div className="modal">
                 <div className="user-container">
@@ -21,14 +43,14 @@ function CreateUserModal() {
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" />
+                                    <input id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
@@ -38,14 +60,14 @@ function CreateUserModal() {
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" />
+                                    <input id="email" name="email" type="text" value={formData.email} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={formData.phoneNumber} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
@@ -54,7 +76,7 @@ function CreateUserModal() {
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" />
+                                <input id="imageUrl" name="imageUrl" type="text" value={formData.imageUrl} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -63,14 +85,14 @@ function CreateUserModal() {
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" />
+                                    <input id="country" name="country" type="text" value={formData.country} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" />
+                                    <input id="city" name="city" type="text" value={formData.city} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
@@ -80,26 +102,26 @@ function CreateUserModal() {
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" />
+                                    <input id="street" name="street" type="text" value={formData.street} onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={formData.streetNumber} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Save</button>
-                            <button id="action-cancel" className="btn" type="button" >Cancel</button>
+                            <button id="action-cancel" className="btn" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default CreateUserModal
+export default CreateUserModal;
