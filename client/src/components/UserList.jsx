@@ -1,3 +1,4 @@
+import Pagination from "./Padination"
 import Search from "./Search"
 import UserListTable from "./UserListTable"
 
@@ -7,6 +8,7 @@ function UserList() {
             <Search/>
             <UserListTable/>
             <button className="btn-add btn">Add new user</button>
+            <Pagination/>
         </section>
     )
 }
