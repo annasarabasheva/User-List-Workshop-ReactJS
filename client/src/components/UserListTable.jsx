@@ -1,10 +1,12 @@
 import UserItem from "./UserItem"
 import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
+import CreateUserModal from "./CreateUserModal";
 
 
 function UserListTable() {
     const [users, setUsers] = useState([]);
+    const [showCreate, setShowCreate] = useState(false);
     console.log(users)
     useEffect(() => {
         userService.getAll()
@@ -12,9 +14,13 @@ function UserListTable() {
             .catch(err => console.log(err));
     }, []);
 
+    const createUserClickHandler = () => {
+        setShowCreate(true);
+    };
+
     return (
         <div className="table-wrapper">
-           
+            <CreateUserModal/>
             <table className="table">
                 <thead>
                     <tr>
@@ -128,6 +134,7 @@ function UserListTable() {
                     ))}
                 </tbody>
             </table>
+            <button className="btn-add btn" onClick={createUserClickHandler}>Add new user</button>
             
         </div>
     )
