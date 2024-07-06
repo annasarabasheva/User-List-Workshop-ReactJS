@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal";
+import UserDeleteModal from "./UserDeleteModal";
 
 function UserListTable() {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [showDelete, setShowDelete] = useState(false);
 
     console.log(users)
     useEffect(() => {
@@ -46,16 +48,40 @@ function UserListTable() {
     };
 
 
+    const deleteUserClickHandler = (userId) => {
+        setSelectedUser(userId);
+        setShowDelete(true);
+    }
+
+    const deleteUserHandler = async () => {
+        // Remove user from server
+        await userService.remove(selectedUser);
+
+        // Remove user from state
+        setUsers(state => state.filter(user => user._id !== selectedUser));
+
+        // Close the delete modal
+        setShowDelete(false);
+    };
 
     return (
         <div className="table-wrapper">
             {showCreate && <CreateUserModal onClose={hideCreateUserModal} onCreate={userCreateHandler}/>}
+
             {showInfo && (
                 <UserInfoModal
                     onClose={() => setShowInfo(false)}
                     userId={selectedUser}
                 />
             )}
+
+            {showDelete && (
+                <UserDeleteModal
+                    onClose={() => setShowDelete(false)}
+                    onDelete={deleteUserHandler}
+                />
+            )}
+
             <table className="table">
                 <thead>
                     <tr>
@@ -165,6 +191,7 @@ function UserListTable() {
                             lastName={user.lastName}
                             phoneNumber={user.phoneNumber}
                             onInfoClick={userInfoClickHandler}
+                            onDeleteClick={deleteUserClickHandler}
 
                         />
                     ))}

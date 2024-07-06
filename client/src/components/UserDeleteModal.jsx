@@ -1,4 +1,4 @@
-function UserDeleteModal({onClose}) {
+function UserDeleteModal({onClose, onDelete}) {
     return (
         <div class="overlay">
             <div class="backdrop" onClick={onClose}></div>
@@ -17,8 +17,8 @@ function UserDeleteModal({onClose}) {
                 </header>
                 <div class="actions">
                     <div id="form-actions">
-                    <button id="action-save" class="btn" type="submit">Delete</button>
-                    <button id="action-cancel" class="btn" type="button">
+                    <button id="action-save" class="btn" type="submit" onClick={onDelete}>Delete</button>
+                    <button id="action-cancel" class="btn" type="button" onClick={onClose}>
                         Cancel
                     </button>
                     </div>
