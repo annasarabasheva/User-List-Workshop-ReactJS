@@ -20,10 +20,27 @@ function UserListTable() {
     const hideCreateUserModal = () => {
         setShowCreate(false)
     }
+    const userCreateHandler = async (e) => {
+        // Stop page from refreshing
+        e.preventDefault();
+
+        // Get data from form data
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+
+        // Create new user at the server
+        const newUser = await userService.create(data);
+
+        // Add newly created user to the local state
+        setUsers(state => [...state, newUser]);
+
+        // Close the modal
+        setShowCreate(false);
+    };
+
 
     return (
         <div className="table-wrapper">
-            {showCreate && <CreateUserModal hideModal={hideCreateUserModal}/>}
+            {showCreate && <CreateUserModal onClose={hideCreateUserModal} onCreate={userCreateHandler}/>}
             <table className="table">
                 <thead>
                     <tr>
