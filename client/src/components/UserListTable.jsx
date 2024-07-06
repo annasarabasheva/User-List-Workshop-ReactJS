@@ -17,10 +17,13 @@ function UserListTable() {
     const createUserClickHandler = () => {
         setShowCreate(true);
     };
+    const hideCreateUserModal = () => {
+        setShowCreate(false)
+    }
 
     return (
         <div className="table-wrapper">
-            {showCreate && <CreateUserModal/>}
+            {showCreate && <CreateUserModal hideModal={hideCreateUserModal}/>}
             <table className="table">
                 <thead>
                     <tr>
