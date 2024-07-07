@@ -11,4 +11,5 @@ function UserList() {
         </section>
     )
 }
+
 export default UserList
