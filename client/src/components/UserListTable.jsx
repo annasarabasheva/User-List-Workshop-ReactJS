@@ -53,7 +53,10 @@ function UserListTable() {
     };
 
 
-   
+    const deleteUserClickHandler = (userId) => {
+        setSelectedUser(userId);
+        setShowDelete(true);
+    }
 
     const deleteUserHandler = async () => {
         // Remove user from server
