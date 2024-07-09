@@ -47,7 +47,11 @@ function UserListTable() {
         setShowCreate(false);
     };
 
-  
+    const userInfoClickHandler = async (userId) => {
+        setSelectedUser(userId);
+        setShowInfo(true);
+    };
+
 
     const deleteUserClickHandler = (userId) => {
         setSelectedUser(userId);
