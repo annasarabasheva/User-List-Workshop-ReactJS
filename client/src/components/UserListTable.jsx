@@ -27,7 +27,9 @@ function UserListTable() {
     const createUserClickHandler = () => {
         setShowCreate(true);
     };
-    
+    const hideCreateUserModal = () => {
+        setShowCreate(false)
+    }
     const userCreateHandler = async (e) => {
         // Stop page from refreshing
         e.preventDefault();
